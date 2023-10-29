@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
-#include <thread>
+#include <mutex>
+#include <condition_variable>
+//#include <thread>
 #include "commands.h"
 
-void startClientThread(cmd &cmd);
+void startClientThread(std::mutex &m, std::condition_variable &cv, cmd &cmd);

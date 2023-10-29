@@ -40,22 +40,34 @@ int getInteger(std::string token, int &integer)
 int populateCmd(std::vector<std::string> tokens, cmd &cmd)
 {
 	int result;
-	// get server IP address.
-	result = getServerIP(tokens[1], cmd.serverIP);
-	if (result == 1)
+	// check if user is starting new client or entering commands for running client.
+	if (tokens[0] == "start")
 	{
-		std::cout << "Invalid server address.\n";
-		return 1;
+		// get server IP address.
+		result = getServerIP(tokens[1], cmd.serverIP);
+		if (result == 1)
+		{
+			std::cout << "Invalid server address.\n";
+			return 1;
+		}
+		// get server port number.
+		result = getInteger(tokens[2], cmd.serverPort);
+		if (result == 1)
+		{
+			std::cout << "Invalid server port number.\n";
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
-	// get server port number.
-	result = getInteger(tokens[2], cmd.serverPort);
-	if (result == 1)
+	else // client is running, get new commands.
 	{
-		std::cout << "Invalid server port number.\n";
-		return 1;
-	}
-	else
-	{
-		return 0;
+		// function
+		cmd.function = tokens[0];
+		// get integer.
+		result = getInteger(tokens[1], cmd.input1);
+		return result;
 	}
 }

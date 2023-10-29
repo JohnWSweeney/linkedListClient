@@ -3,6 +3,9 @@
 Companion client app for [linkedListServer](https://github.com/JohnWSweeney/linkedListServer).
 
 ## ChangeLog
+v0.0.5
+- Updated commands, client, startMenu to distinguish user commands to start client thread and update cmd parameters for JSON messages.
+
 v0.0.4
 - Updated client, threads headers/cpps to accept user server IP and port number commands.
 
