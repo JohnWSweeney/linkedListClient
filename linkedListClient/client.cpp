@@ -1,6 +1,13 @@
 #include "client.h"
 #include "tcp.h"
 #include "atomicBool.h"
+#include <nlohmann/json.hpp>
+
+struct cmd
+{
+	std::string function;
+	int integer;
+};
 
 void Client::run()
 {
@@ -19,9 +26,18 @@ void Client::message()
 		WSACleanup();
 		return;
 	}
+	//
+	cmd asdf;
+	asdf.function = "init";
+	asdf.integer = 1234;
+
+	nlohmann::json j;
+	j["function"] = asdf.function;
+	j["integer"] = asdf.integer;
+	std::string s = j.dump();
 
 	// send message to server.
-	const char *sendbuf = "hellyeah";
+	const char *sendbuf = s.c_str();
 	int len = (int)strlen(sendbuf);
 	result = message.tx(socket, sendbuf, len);
 	if (result > 0)
