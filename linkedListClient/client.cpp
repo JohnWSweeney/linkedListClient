@@ -3,20 +3,20 @@
 #include "atomicBool.h"
 #include <nlohmann/json.hpp>
 
-struct cmd
+struct cmdJSON
 {
 	std::string function;
 	int integer;
 };
 
-void Client::connectToServer()
+void Client::connectToServer(cmd &cmd)
 {
 	tcp client;
 	SOCKET socket = INVALID_SOCKET;
-	int result = client.openClientSocket(socket, "127.0.0.1", 123);
+	int result = client.openClientSocket(socket, cmd.serverIP, cmd.serverPort);
 	if (result != 0)
 	{
-		std::cout << "Client: message.openClientSocket failed.\n";
+		std::cout << "Client::connectToServer failed.\n";
 		closesocket(socket);
 		WSACleanup();
 		return;
@@ -27,7 +27,7 @@ void Client::connectToServer()
 void Client::stateMachine(SOCKET socket, tcp client)
 {
 	//
-	cmd test;
+	cmdJSON test;
 	test.function = "init";
 	test.integer = 1234;
 
@@ -62,8 +62,8 @@ void Client::stateMachine(SOCKET socket, tcp client)
 	std::cout << "Client: message ended.\n";
 }
 
-void startClient()
+void startClient(cmd &cmd)
 {
 	Client newClient;
-	newClient.connectToServer();
+	newClient.connectToServer(cmd);
 }

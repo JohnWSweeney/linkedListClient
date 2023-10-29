@@ -2,11 +2,11 @@
 #include "client.h"
 #include "atomicBool.h"
 
-void startClientThread()
+void startClientThread(cmd &cmd)
 {
 	try {
 		clientStatus = true;
-		std::thread clientThread(startClient);
+		std::thread clientThread(startClient, std::ref(cmd));
 		clientThread.detach();
 	}
 	catch (...)

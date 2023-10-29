@@ -3,6 +3,9 @@
 Companion client app for [linkedListServer](https://github.com/JohnWSweeney/linkedListServer).
 
 ## ChangeLog
+v0.0.4
+- Updated client, threads headers/cpps to accept user server IP and port number commands.
+
 v0.0.3
 - Added commands header/cpp and updated startMenu to accept user commands to connect to server.
 

@@ -32,7 +32,7 @@ void startMenu(bool &running)
 			if (result == 0)
 			{
 				clientStatus = true;
-				startClientThread();
+				startClientThread(cmd);
 			}
 		}
 	}
