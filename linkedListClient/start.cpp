@@ -1,4 +1,5 @@
 #include "start.h"
+#include "commands.h"
 #include "threads.h"
 #include "atomicBool.h"
 
@@ -17,14 +18,22 @@ void getCommands(std::vector<std::string> &tokens)
 
 void startMenu(bool &running)
 {
-	std::vector<std::string> tokens;
-	getCommands(tokens);
+	cmd cmd;
+	int result;
 
-	if (tokens[0] == "client")
+	while(running)
 	{
-		if (tokens[1] == "start")
+		std::vector<std::string> tokens;
+		getCommands(tokens);
+
+		if (tokens[0] == "start")
 		{
-			startClientThread();
+			result = populateCmd(tokens, cmd);
+			if (result == 0)
+			{
+				clientStatus = true;
+				startClientThread();
+			}
 		}
 	}
 }

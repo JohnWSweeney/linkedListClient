@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClInclude Include="atomicBool.h" />
     <ClInclude Include="client.h" />
+    <ClInclude Include="commands.h" />
     <ClInclude Include="start.h" />
     <ClInclude Include="tcp.h" />
     <ClInclude Include="threads.h" />
@@ -138,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="atomicBool.cpp" />
     <ClCompile Include="client.cpp" />
+    <ClCompile Include="commands.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="start.cpp" />
     <ClCompile Include="tcp.cpp" />

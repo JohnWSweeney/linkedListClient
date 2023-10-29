@@ -3,6 +3,9 @@
 Companion client app for [linkedListServer](https://github.com/JohnWSweeney/linkedListServer).
 
 ## ChangeLog
+v0.0.3
+- Added commands header/cpp and updated startMenu to accept user commands to connect to server.
+
 v0.0.2
 - Renamed Client::run to "connectToServer", Client::message to "stateMachine".
 - Move connect to server function from Client::stateMachine to Client::connectToServer.
