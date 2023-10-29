@@ -9,16 +9,11 @@ struct cmd
 	int integer;
 };
 
-void Client::run()
+void Client::connectToServer()
 {
-	this->message();
-}
-
-void Client::message()
-{
-	tcp message;
+	tcp client;
 	SOCKET socket = INVALID_SOCKET;
-	int result = message.openClientSocket(socket, "127.0.0.1", 123);
+	int result = client.openClientSocket(socket, "127.0.0.1", 123);
 	if (result != 0)
 	{
 		std::cout << "Client: message.openClientSocket failed.\n";
@@ -26,20 +21,25 @@ void Client::message()
 		WSACleanup();
 		return;
 	}
+	this->stateMachine(std::move(socket), std::move(client));
+}
+
+void Client::stateMachine(SOCKET socket, tcp client)
+{
 	//
-	cmd asdf;
-	asdf.function = "init";
-	asdf.integer = 1234;
+	cmd test;
+	test.function = "init";
+	test.integer = 1234;
 
 	nlohmann::json j;
-	j["function"] = asdf.function;
-	j["integer"] = asdf.integer;
+	j["function"] = test.function;
+	j["integer"] = test.integer;
 	std::string s = j.dump();
 
 	// send message to server.
 	const char *sendbuf = s.c_str();
 	int len = (int)strlen(sendbuf);
-	result = message.tx(socket, sendbuf, len);
+	int result = client.tx(socket, sendbuf, len);
 	if (result > 0)
 	{
 		std::cout << "Client sent: " << sendbuf << '\n';
@@ -53,7 +53,7 @@ void Client::message()
 	}
 
 	// gracefully close connection.
-	result = message.closeConnection(socket, true);
+	result = client.closeConnection(socket, true);
 	if (result != 0)
 	{
 		std::cout << "Client: message.closeConnection failed.\n";
@@ -65,5 +65,5 @@ void Client::message()
 void startClient()
 {
 	Client newClient;
-	newClient.run();
+	newClient.connectToServer();
 }

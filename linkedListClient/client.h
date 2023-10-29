@@ -1,13 +1,12 @@
 #pragma once
 #include <iostream>
+#include "tcp.h"
 
 class Client
 {
 public:
-	Client() {}
-	~Client() {}
-	void run();
-	void message();
+	void connectToServer();
+	void stateMachine(SOCKET socket, tcp client);
 };
 
 void startClient();

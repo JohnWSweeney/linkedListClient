@@ -2,7 +2,7 @@
 
 int main()
 {
-	std::cout << "linkedListClient v0.0.1\n\n";
+	std::cout << "linkedListClient v0.0.2\n\n";
 	bool running = true;
 	while (running)
 	{
