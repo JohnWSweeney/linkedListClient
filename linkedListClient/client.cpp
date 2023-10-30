@@ -3,12 +3,6 @@
 #include "atomicBool.h"
 #include <nlohmann/json.hpp>
 
-//struct cmdJSON
-//{
-//	std::string function;
-//	int integer;
-//};
-
 void Client::connectToServer(std::mutex &m, std::condition_variable &cv, cmd &cmd)
 {
 	tcp client;
@@ -26,27 +20,21 @@ void Client::connectToServer(std::mutex &m, std::condition_variable &cv, cmd &cm
 
 void Client::stateMachine(SOCKET socket, tcp client, std::mutex &m, std::condition_variable &cv, cmd &cmd)
 {
-	//
-	//cmdJSON test;
-	//test.function = "init";
-	//test.integer = 1234;
+	std::cout << "Client started.\n";
 	int result = 0;
-
 	std::unique_lock<std::mutex> lk(m);
 	cv.notify_one();
-	while (result == 0)
+	while (clientStatus)
 	{
 		cv.wait(lk);
 
 		nlohmann::json j;
-		//j["function"] = test.function;
-		//j["integer"] = test.integer;
 		j["function"] = cmd.function;
 		j["integer"] = cmd.input1;
 
 		std::string s = j.dump();
 
-		// send message to server.
+		// send JSON message to server.
 		const char *sendbuf = s.c_str();
 		int len = (int)strlen(sendbuf);
 		int result = client.tx(socket, sendbuf, len);
@@ -59,7 +47,8 @@ void Client::stateMachine(SOCKET socket, tcp client, std::mutex &m, std::conditi
 			std::cout << "Client: message.tx failed.\n";
 			closesocket(socket);
 			WSACleanup();
-			return;
+			//return;
+			clientStatus = false;
 		}
 		cv.notify_one();
 	}
@@ -69,10 +58,10 @@ void Client::stateMachine(SOCKET socket, tcp client, std::mutex &m, std::conditi
 	result = client.closeConnection(socket, true);
 	if (result != 0)
 	{
-		std::cout << "Client: message.closeConnection failed.\n";
+		std::cout << "Client::stateMachine.closeConnection failed.\n";
 		return;
 	}
-	std::cout << "Client: message ended.\n";
+	std::cout << "Client stopped.\n";
 }
 
 void startClient(std::mutex &m, std::condition_variable &cv, cmd &cmd)

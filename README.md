@@ -3,6 +3,9 @@
 Companion client app for [linkedListServer](https://github.com/JohnWSweeney/linkedListServer).
 
 ## ChangeLog
+v0.0.6
+- Added "stop" and "exit" conditions to startMenu function in start cpp.
+
 v0.0.5
 - Updated commands, client, startMenu to distinguish user commands to start client thread and update cmd parameters for JSON messages.
 

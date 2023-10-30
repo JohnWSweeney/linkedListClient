@@ -39,6 +39,28 @@ void startMenu(bool &running)
 				cv.wait(lk);
 			}
 		}
+		// stop running client.
+		else if (tokens[0] == "stop")
+		{
+			if (clientStatus == true)
+			{
+				cmd = {};
+				clientStatus = false;
+				cv.notify_one();
+				cv.wait(lk);
+			}
+		}
+		// exit the program.
+		else if (tokens[0] == "exit")
+		{
+			if (clientStatus == true)
+			{
+				clientStatus = false;
+				cv.notify_one();
+				cv.wait(lk);
+			}
+			running = false;
+		}
 		else // get new commands for running client.
 		{
 			result = populateCmd(tokens, cmd);
