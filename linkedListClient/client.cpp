@@ -46,7 +46,7 @@ void Client::stateMachine(SOCKET socket, tcp client, std::mutex &m, std::conditi
 		int result = client.tx(socket, sendbuf, len);
 		if (result > 0)
 		{
-			std::cout << "Client sent: " << sendbuf << '\n';
+			//std::cout << "Client sent: " << sendbuf << '\n';
 		}
 		else if (result == -1)
 		{

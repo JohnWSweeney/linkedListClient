@@ -3,6 +3,9 @@
 Companion client app for [linkedListServer](https://github.com/JohnWSweeney/linkedListServer).
 
 ## ChangeLog
+v0.0.8
+- Updated cmd struct and commands cpp to control singly linked list demo running on server.
+
 v0.0.7
 - Added convertCmdToString to client to streamline command struct conversion to string, in JSON format.
 - Updated startMenu, populateCmd, and client stateMachine funciton to end session from client.
