@@ -3,6 +3,10 @@
 Companion client app for [linkedListServer](https://github.com/JohnWSweeney/linkedListServer).
 
 ## ChangeLog
+v0.0.7
+- Added convertCmdToString to client to streamline command struct conversion to string, in JSON format.
+- Updated startMenu, populateCmd, and client stateMachine funciton to end session from client.
+
 v0.0.6
 - Added "stop" and "exit" conditions to startMenu function in start cpp.
 

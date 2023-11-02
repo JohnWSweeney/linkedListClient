@@ -11,6 +11,7 @@ void startClientThread(std::mutex &m, std::condition_variable &cv, cmd &cmd)
 	}
 	catch (...)
 	{
+		clientStatus = false;
 		std::cout << "Client start failed.\n";
 	}
 }

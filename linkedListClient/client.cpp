@@ -3,6 +3,17 @@
 #include "atomicBool.h"
 #include <nlohmann/json.hpp>
 
+void convertCmdToString(cmd &cmd, std::string &tempStr)
+{
+	// convert cmd struct to JSON, then JSON to string.
+	nlohmann::json tempJSON;
+	tempJSON["demoType"] = cmd.demoType;
+	tempJSON["demoStatus"] = cmd.demoStatus;
+	tempJSON["function"] = cmd.function;
+	tempJSON["input1"] = cmd.input1;
+	tempStr = tempJSON.dump();
+}
+
 void Client::connectToServer(std::mutex &m, std::condition_variable &cv, cmd &cmd)
 {
 	tcp client;
@@ -27,15 +38,10 @@ void Client::stateMachine(SOCKET socket, tcp client, std::mutex &m, std::conditi
 	while (clientStatus)
 	{
 		cv.wait(lk);
-
-		nlohmann::json j;
-		j["function"] = cmd.function;
-		j["integer"] = cmd.input1;
-
-		std::string s = j.dump();
-
-		// send JSON message to server.
-		const char *sendbuf = s.c_str();
+		std::string tempStr;
+		convertCmdToString(cmd, tempStr);
+		// send message to server.
+		const char *sendbuf = tempStr.c_str();
 		int len = (int)strlen(sendbuf);
 		int result = client.tx(socket, sendbuf, len);
 		if (result > 0)
@@ -51,6 +57,16 @@ void Client::stateMachine(SOCKET socket, tcp client, std::mutex &m, std::conditi
 			clientStatus = false;
 		}
 		cv.notify_one();
+
+		// receive message from server.
+		msg newMsg;
+		result = client.rx(socket, newMsg.buffer, newMsg.bufferLen);
+		if (result == -1) // peer closed connection gracefully.
+		{
+			client.closeConnection(socket, false);
+			clientStatus = false;
+			return;
+		}
 	}
 	cv.notify_one();
 

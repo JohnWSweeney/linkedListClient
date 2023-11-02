@@ -28,14 +28,18 @@ void startMenu(bool &running)
 	{
 		std::vector<std::string> tokens;
 		getCommands(tokens);
-		// start a new client thread.
+		// ...
 		if (tokens[0] == "start")
 		{
 			result = populateCmd(tokens, cmd);
-			if (result == 0)
+			if (result == 0) // start client.
 			{
-				clientStatus = true;
 				startClientThread(std::ref(m), std::ref(cv), std::ref(cmd));
+				cv.wait(lk);
+			}
+			else if (result == 2) // start demo on server.
+			{
+				cv.notify_one();
 				cv.wait(lk);
 			}
 		}
@@ -44,10 +48,11 @@ void startMenu(bool &running)
 		{
 			if (clientStatus == true)
 			{
-				cmd = {};
-				clientStatus = false;
+				cmd.demoStatus = "stop";
 				cv.notify_one();
 				cv.wait(lk);
+				clientStatus = false;
+				cmd = {};
 			}
 		}
 		// exit the program.
