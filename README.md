@@ -3,6 +3,9 @@
 Companion client app for [linkedListServer](https://github.com/JohnWSweeney/linkedListServer).
 
 ## ChangeLog
+v0.0.10
+- Added "dlist" to demoTypes string vector in commands to control doubly linked list demo running on server.
+
 v0.0.9
 - Removed output field from command struct.
 - Updated convertCmdToString in client cpp to add all command struct fields to JSON string.
