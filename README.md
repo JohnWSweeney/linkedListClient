@@ -3,6 +3,10 @@
 Companion client app for [linkedListServer](https://github.com/JohnWSweeney/linkedListServer).
 
 ## ChangeLog
+v0.0.9
+- Removed output field from command struct.
+- Updated convertCmdToString in client cpp to add all command struct fields to JSON string.
+
 v0.0.8
 - Updated cmd struct and commands cpp to control singly linked list demo running on server.
 

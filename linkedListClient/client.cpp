@@ -11,6 +11,9 @@ void convertCmdToString(cmd &cmd, std::string &tempStr)
 	tempJSON["demoStatus"] = cmd.demoStatus;
 	tempJSON["function"] = cmd.function;
 	tempJSON["input1"] = cmd.input1;
+	tempJSON["input2"] = cmd.input2;
+	tempJSON["input3"] = cmd.input3;
+	tempJSON["isAscending"] = cmd.isAscending;
 	tempStr = tempJSON.dump();
 }
 
