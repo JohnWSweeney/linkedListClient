@@ -3,6 +3,9 @@
 Companion client app for [linkedListServer](https://github.com/JohnWSweeney/linkedListServer).
 
 ## ChangeLog
+v0.0.11
+- Added "cslist" to demoTypes string vector in commands cpp to control circular singly linked list demo running on server.
+
 v0.0.10
 - Added "dlist" to demoTypes string vector in commands to control doubly linked list demo running on server.
 

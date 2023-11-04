@@ -1,7 +1,7 @@
 #include "commands.h"
 #include "atomicBool.h"
 
-std::vector<std::string> demoTypes = { "sList", "dList" };
+std::vector<std::string> demoTypes = { "sList", "dList", "csList" };
 
 std::vector<std::string> listFunc = { "deleteNodeFront", "deleteNodeBack", "deleteNodeByPtr", "deleteBeforePtr", "deleteAfterPtr", "returnPosByPtr", "returnFrontData", "returnBackData", "returnDataByPtr", "findMinReturnPos", "findMinReturnPtr", "findMaxReturnPos", "findMaxReturnPtr", "findTailReturnPos", "findTailReturnPtr", "movePtrToFront", "movePtrToBack", "movePtrUp", "movePtrDown", "clear", "isEmpty", "size", "print", "reverse", "addNodes", "clearPtr", "shuffle" };
 std::vector<std::string> listFuncInt = { "init", "addNodeFront", "addNodeBack", "addNodeByPos", "deleteNodeByPos", "deleteBeforePos", "deleteAfterPos", "returnPtrByPos", "returnDataByPos", "updateDataByPos", "updateDataByPtr", "findDataReturnPos", "findDataReturnPtr", "movePosToFront", "movePosToBack", "movePosUp", "movePosDown", "addRandomNodes", "swap" };
@@ -236,11 +236,6 @@ int populateCmd(std::vector<std::string> tokens, cmd &cmd)
 		{
 			cmd.demoStatus = "running";
 		}
-		//// function
-		//cmd.function = tokens[0];
-		//// get integer.
-		//result = getInteger(tokens[1], cmd.input1);
-		//return result;
 
 		// check if user enter a valid function for the demo, get integers/bools for function as needed.
 		result = checkFunctionGetVariables(tokens, cmd);
