@@ -1,11 +1,14 @@
 #include "commands.h"
 #include "atomicBool.h"
 
-std::vector<std::string> demoTypes = { "sList", "dList", "csList", "cdList" };
+std::vector<std::string> demoTypes = { "sList", "dList", "csList", "cdList", "stack" };
 
 std::vector<std::string> listFunc = { "deleteNodeFront", "deleteNodeBack", "deleteNodeByPtr", "deleteBeforePtr", "deleteAfterPtr", "returnPosByPtr", "returnFrontData", "returnBackData", "returnDataByPtr", "findMinReturnPos", "findMinReturnPtr", "findMaxReturnPos", "findMaxReturnPtr", "findTailReturnPos", "findTailReturnPtr", "movePtrToFront", "movePtrToBack", "movePtrUp", "movePtrDown", "clear", "isEmpty", "size", "print", "reverse", "addNodes", "clearPtr", "shuffle" };
 std::vector<std::string> listFuncInt = { "init", "addNodeFront", "addNodeBack", "addNodeByPos", "deleteNodeByPos", "deleteBeforePos", "deleteAfterPos", "returnPtrByPos", "returnDataByPos", "updateDataByPos", "updateDataByPtr", "findDataReturnPos", "findDataReturnPtr", "movePosToFront", "movePosToBack", "movePosUp", "movePosDown", "addRandomNodes", "swap" };
 std::vector<std::string> listFuncBool = { "bubbleSort", "selectionSort" };
+
+std::vector<std::string> stackFunc = { "pop", "top", "clear", "isEmpty", "size", "print" };
+std::vector<std::string> stackFuncInt = { "push" };
 
 int checkStringVector(std::string token, std::vector<std::string> strVector, std::string &cmdStr)
 {
@@ -95,6 +98,12 @@ void populateFunctionLists(cmd &cmd)
 		cmd.func = listFunc;
 		cmd.funcInt = listFuncInt;
 		cmd.funcBool = listFuncBool;
+	}
+	else if (cmd.demoType == "stack")
+	{
+		cmd.func = stackFunc;
+		cmd.funcInt = stackFuncInt;
+		cmd.funcBool = {};
 	}
 }
 

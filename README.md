@@ -3,6 +3,12 @@
 Companion client app for [linkedListServer](https://github.com/JohnWSweeney/linkedListServer).
 
 ## ChangeLog
+v0.0.13
+- Updated commands cpp to enable control of stack demo running on server.
+	- Added "stack" to demoTypes string vector.
+	- Added stack function string vectors.
+	- Added "stack" condition to populateFunctionLists.
+
 v0.0.12
 - Added "cdlist" to demoTypes string vector in commands cpp to control circular doubly linked list demo running on server.
 
