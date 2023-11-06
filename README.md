@@ -3,6 +3,13 @@
 Companion client app for [linkedListServer](https://github.com/JohnWSweeney/linkedListServer).
 
 ## ChangeLog
+v0.0.14
+- Updated commands cpp to enable control of queue demo running on server.
+	- Added "queue" to demoTypes string vector.
+	- Added queue function string vectors.
+	- Added "queue" condition to populateFunctionLists.
+- Updated populateCmd in commands cpp to allow only one demo running on the server at a time.
+
 v0.0.13
 - Updated commands cpp to enable control of stack demo running on server.
 	- Added "stack" to demoTypes string vector.

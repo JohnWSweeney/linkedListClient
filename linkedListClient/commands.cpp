@@ -1,7 +1,7 @@
 #include "commands.h"
 #include "atomicBool.h"
 
-std::vector<std::string> demoTypes = { "sList", "dList", "csList", "cdList", "stack" };
+std::vector<std::string> demoTypes = { "sList", "dList", "csList", "cdList", "stack", "queue" };
 
 std::vector<std::string> listFunc = { "deleteNodeFront", "deleteNodeBack", "deleteNodeByPtr", "deleteBeforePtr", "deleteAfterPtr", "returnPosByPtr", "returnFrontData", "returnBackData", "returnDataByPtr", "findMinReturnPos", "findMinReturnPtr", "findMaxReturnPos", "findMaxReturnPtr", "findTailReturnPos", "findTailReturnPtr", "movePtrToFront", "movePtrToBack", "movePtrUp", "movePtrDown", "clear", "isEmpty", "size", "print", "reverse", "addNodes", "clearPtr", "shuffle" };
 std::vector<std::string> listFuncInt = { "init", "addNodeFront", "addNodeBack", "addNodeByPos", "deleteNodeByPos", "deleteBeforePos", "deleteAfterPos", "returnPtrByPos", "returnDataByPos", "updateDataByPos", "updateDataByPtr", "findDataReturnPos", "findDataReturnPtr", "movePosToFront", "movePosToBack", "movePosUp", "movePosDown", "addRandomNodes", "swap" };
@@ -9,6 +9,9 @@ std::vector<std::string> listFuncBool = { "bubbleSort", "selectionSort" };
 
 std::vector<std::string> stackFunc = { "pop", "top", "clear", "isEmpty", "size", "print" };
 std::vector<std::string> stackFuncInt = { "push" };
+
+std::vector<std::string> queueFunc = { "pop", "front", "back", "clear", "isEmpty", "size", "print" };
+std::vector<std::string> queueFuncInt = { "push" };
 
 int checkStringVector(std::string token, std::vector<std::string> strVector, std::string &cmdStr)
 {
@@ -103,6 +106,12 @@ void populateFunctionLists(cmd &cmd)
 	{
 		cmd.func = stackFunc;
 		cmd.funcInt = stackFuncInt;
+		cmd.funcBool = {};
+	}
+	else if (cmd.demoType == "queue")
+	{
+		cmd.func = queueFunc;
+		cmd.funcInt = queueFuncInt;
 		cmd.funcBool = {};
 	}
 }
@@ -216,7 +225,7 @@ int populateCmd(std::vector<std::string> tokens, cmd &cmd)
 	else if (tokens[0] == "start" and clientStatus == true) // client running, start demo on server.
 	{
 		// check if a demo is currently running on server.
-		if (cmd.demoStatus != "start" or cmd.demoStatus != "running")
+		if (cmd.demoStatus.empty())
 		{
 			// check if user entered a valid demo type.
 			result = checkStringVector(tokens[1], demoTypes, cmd.demoType);
@@ -234,7 +243,7 @@ int populateCmd(std::vector<std::string> tokens, cmd &cmd)
 		}
 		else
 		{
-			std::cout << "Only one demo can run on the server at a time.\n";
+			std::cout << "Only one demo can run on the server at a time.\n"; // not working at expected.
 			return 1;
 		}
 	}
