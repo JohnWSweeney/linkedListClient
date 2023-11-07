@@ -3,6 +3,12 @@
 Companion client app for [linkedListServer](https://github.com/JohnWSweeney/linkedListServer).
 
 ## ChangeLog
+0.0.15
+- Updated commands cpp to enable control of deque demo running on server.
+	- Added "deque" to demoTypes string vector.
+	- Added deque function string vectors.
+	- Added "deque" condition to populateFunctionLists.
+
 v0.0.14
 - Updated commands cpp to enable control of queue demo running on server.
 	- Added "queue" to demoTypes string vector.

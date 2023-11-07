@@ -1,7 +1,7 @@
 #include "commands.h"
 #include "atomicBool.h"
 
-std::vector<std::string> demoTypes = { "sList", "dList", "csList", "cdList", "stack", "queue" };
+std::vector<std::string> demoTypes = { "sList", "dList", "csList", "cdList", "stack", "queue", "deque" };
 
 std::vector<std::string> listFunc = { "deleteNodeFront", "deleteNodeBack", "deleteNodeByPtr", "deleteBeforePtr", "deleteAfterPtr", "returnPosByPtr", "returnFrontData", "returnBackData", "returnDataByPtr", "findMinReturnPos", "findMinReturnPtr", "findMaxReturnPos", "findMaxReturnPtr", "findTailReturnPos", "findTailReturnPtr", "movePtrToFront", "movePtrToBack", "movePtrUp", "movePtrDown", "clear", "isEmpty", "size", "print", "reverse", "addNodes", "clearPtr", "shuffle" };
 std::vector<std::string> listFuncInt = { "init", "addNodeFront", "addNodeBack", "addNodeByPos", "deleteNodeByPos", "deleteBeforePos", "deleteAfterPos", "returnPtrByPos", "returnDataByPos", "updateDataByPos", "updateDataByPtr", "findDataReturnPos", "findDataReturnPtr", "movePosToFront", "movePosToBack", "movePosUp", "movePosDown", "addRandomNodes", "swap" };
@@ -12,6 +12,9 @@ std::vector<std::string> stackFuncInt = { "push" };
 
 std::vector<std::string> queueFunc = { "pop", "front", "back", "clear", "isEmpty", "size", "print" };
 std::vector<std::string> queueFuncInt = { "push" };
+
+std::vector<std::string> dequeFunc = { "front", "back", "popFront", "popBack", "clear", "isEmpty", "size", "print" };
+std::vector<std::string> dequeFuncInt = { "pushFront", "pushBack" };
 
 int checkStringVector(std::string token, std::vector<std::string> strVector, std::string &cmdStr)
 {
@@ -112,6 +115,12 @@ void populateFunctionLists(cmd &cmd)
 	{
 		cmd.func = queueFunc;
 		cmd.funcInt = queueFuncInt;
+		cmd.funcBool = {};
+	}
+	else if (cmd.demoType == "deque")
+	{
+		cmd.func = dequeFunc;
+		cmd.funcInt = dequeFuncInt;
 		cmd.funcBool = {};
 	}
 }
