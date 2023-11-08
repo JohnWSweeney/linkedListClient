@@ -3,7 +3,13 @@
 Companion client app for [linkedListServer](https://github.com/JohnWSweeney/linkedListServer).
 
 ## ChangeLog
-0.0.15
+0.0.16
+- Updated commands cpp to enable control of priorityQueue demo running on server.
+	- Added "priorityQueue" to demoTypes string vector.
+	- Added priorityQueue function string vectors.
+	- Added "priorityQueue" condition to populateFunctionLists.
+
+- 0.0.15
 - Updated commands cpp to enable control of deque demo running on server.
 	- Added "deque" to demoTypes string vector.
 	- Added deque function string vectors.

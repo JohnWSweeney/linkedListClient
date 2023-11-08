@@ -24,7 +24,9 @@ void Client::connectToServer(std::mutex &m, std::condition_variable &cv, cmd &cm
 	int result = client.openClientSocket(socket, cmd.serverIP, cmd.serverPort);
 	if (result != 0)
 	{
-		std::cout << "Client::connectToServer failed.\n";
+		//std::cout << "Client::connectToServer failed.\n";
+		//clientStatus = false;
+		cv.notify_one();
 		closesocket(socket);
 		WSACleanup();
 		return;

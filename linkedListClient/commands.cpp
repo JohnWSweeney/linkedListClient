@@ -1,7 +1,7 @@
 #include "commands.h"
 #include "atomicBool.h"
 
-std::vector<std::string> demoTypes = { "sList", "dList", "csList", "cdList", "stack", "queue", "deque" };
+std::vector<std::string> demoTypes = { "sList", "dList", "csList", "cdList", "stack", "queue", "deque", "priorityQueue" };
 
 std::vector<std::string> listFunc = { "deleteNodeFront", "deleteNodeBack", "deleteNodeByPtr", "deleteBeforePtr", "deleteAfterPtr", "returnPosByPtr", "returnFrontData", "returnBackData", "returnDataByPtr", "findMinReturnPos", "findMinReturnPtr", "findMaxReturnPos", "findMaxReturnPtr", "findTailReturnPos", "findTailReturnPtr", "movePtrToFront", "movePtrToBack", "movePtrUp", "movePtrDown", "clear", "isEmpty", "size", "print", "reverse", "addNodes", "clearPtr", "shuffle" };
 std::vector<std::string> listFuncInt = { "init", "addNodeFront", "addNodeBack", "addNodeByPos", "deleteNodeByPos", "deleteBeforePos", "deleteAfterPos", "returnPtrByPos", "returnDataByPos", "updateDataByPos", "updateDataByPtr", "findDataReturnPos", "findDataReturnPtr", "movePosToFront", "movePosToBack", "movePosUp", "movePosDown", "addRandomNodes", "swap" };
@@ -15,6 +15,10 @@ std::vector<std::string> queueFuncInt = { "push" };
 
 std::vector<std::string> dequeFunc = { "front", "back", "popFront", "popBack", "clear", "isEmpty", "size", "print" };
 std::vector<std::string> dequeFuncInt = { "pushFront", "pushBack" };
+
+std::vector<std::string> priorityQueueFunc = { "top", "pop", "clear", "isEmpty", "size", "print" };
+std::vector<std::string> priorityQueueFuncInt = { "push" };
+std::vector<std::string> priorityQueueFuncBool = { "set" };
 
 int checkStringVector(std::string token, std::vector<std::string> strVector, std::string &cmdStr)
 {
@@ -122,6 +126,12 @@ void populateFunctionLists(cmd &cmd)
 		cmd.func = dequeFunc;
 		cmd.funcInt = dequeFuncInt;
 		cmd.funcBool = {};
+	}
+	else if (cmd.demoType == "priorityQueue")
+	{
+		cmd.func = priorityQueueFunc;
+		cmd.funcInt = priorityQueueFuncInt;
+		cmd.funcBool = priorityQueueFuncBool;
 	}
 }
 

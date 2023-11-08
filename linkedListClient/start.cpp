@@ -28,7 +28,6 @@ void startMenu(bool &running)
 	{
 		std::vector<std::string> tokens;
 		getCommands(tokens);
-		// ...
 		if (tokens[0] == "start")
 		{
 			result = populateCmd(tokens, cmd);
