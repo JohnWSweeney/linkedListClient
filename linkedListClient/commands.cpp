@@ -1,7 +1,7 @@
 #include "commands.h"
 #include "atomicBool.h"
 
-std::vector<std::string> demoTypes = { "sList", "dList", "csList", "cdList", "stack", "queue", "deque", "priorityQueue" };
+std::vector<std::string> demoTypes = { "sList", "dList", "csList", "cdList", "stack", "queue", "deque", "priorityQueue", "fifo" };
 
 std::vector<std::string> listFunc = { "deleteNodeFront", "deleteNodeBack", "deleteNodeByPtr", "deleteBeforePtr", "deleteAfterPtr", "returnPosByPtr", "returnFrontData", "returnBackData", "returnDataByPtr", "findMinReturnPos", "findMinReturnPtr", "findMaxReturnPos", "findMaxReturnPtr", "findTailReturnPos", "findTailReturnPtr", "movePtrToFront", "movePtrToBack", "movePtrUp", "movePtrDown", "clear", "isEmpty", "size", "print", "reverse", "addNodes", "clearPtr", "shuffle" };
 std::vector<std::string> listFuncInt = { "init", "addNodeFront", "addNodeBack", "addNodeByPos", "deleteNodeByPos", "deleteBeforePos", "deleteAfterPos", "returnPtrByPos", "returnDataByPos", "updateDataByPos", "updateDataByPtr", "findDataReturnPos", "findDataReturnPtr", "movePosToFront", "movePosToBack", "movePosUp", "movePosDown", "addRandomNodes", "swap" };
@@ -19,6 +19,9 @@ std::vector<std::string> dequeFuncInt = { "pushFront", "pushBack" };
 std::vector<std::string> priorityQueueFunc = { "top", "pop", "clear", "isEmpty", "size", "print" };
 std::vector<std::string> priorityQueueFuncInt = { "push" };
 std::vector<std::string> priorityQueueFuncBool = { "set" };
+
+std::vector<std::string> fifoFuncInt = { "config", "write" };
+std::vector<std::string> fifoFunc = { "read", "clear", "size", "print" };
 
 int checkStringVector(std::string token, std::vector<std::string> strVector, std::string &cmdStr)
 {
@@ -132,6 +135,12 @@ void populateFunctionLists(cmd &cmd)
 		cmd.func = priorityQueueFunc;
 		cmd.funcInt = priorityQueueFuncInt;
 		cmd.funcBool = priorityQueueFuncBool;
+	}
+	else if (cmd.demoType == "fifo")
+	{
+		cmd.func = fifoFunc;
+		cmd.funcInt = fifoFuncInt;
+		cmd.funcBool = {};
 	}
 }
 
